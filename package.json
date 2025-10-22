@@ -1,0 +1,63 @@
+{
+  "name": "@rachel-allyson/heroui-font-picker",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A powerful font picker component for HeroUI with Google Fonts integration and sprite-based previews",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "DUAL_PACKAGE_SUPPORT.md"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "heroui",
+    "font-picker",
+    "google-fonts",
+    "react",
+    "typescript",
+    "ui-components",
+    "font-preview",
+    "sprite-system"
+  ],
+  "author": "Rachel Higley",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rachelallyson/heroui-font-picker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rachelallyson/heroui-font-picker/issues"
+  },
+  "homepage": "https://github.com/rachelallyson/heroui-font-picker#readme",
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "peerDependenciesMeta": {
+    "@heroui/autocomplete": {
+      "optional": true
+    },
+    "@heroui/react": {
+      "optional": true
+    }
+  },
+  "peerDependenciesOptional": true,
+  "dependencies": {
+    "@react-aria/i18n": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@heroui/autocomplete": "^2.0.0",
+    "@heroui/react": "^2.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  }
+}

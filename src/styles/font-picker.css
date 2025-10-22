@@ -1,0 +1,325 @@
+/* HeroUI Font Picker Integration Styles */
+
+/* Font Picker Base Styles - Using HeroUI Design Tokens */
+.fontpicker {
+    /* Use HeroUI's input styling as base */
+    @apply w-full min-h-[2.5rem] px-3 py-2 bg-content1 border border-default-200 rounded-medium;
+    @apply text-foreground placeholder:text-default-500;
+    @apply transition-colors duration-200;
+    @apply focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20;
+    @apply hover:border-default-300;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed;
+
+    /* Ensure proper spacing and alignment */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Search Input Styling */
+.fontpicker__search {
+    @apply w-full bg-transparent border-none outline-none;
+    @apply text-foreground placeholder:text-default-500;
+    @apply text-sm;
+
+    /* Remove default input styling */
+    background: none !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+.fontpicker__search:focus {
+    @apply outline-none ring-0;
+    background: none !important;
+    box-shadow: none !important;
+}
+
+/* Popout/Dropdown Styling */
+.fontpicker__popout {
+    @apply absolute z-50 w-full mt-1;
+    @apply bg-content1 border border-default-200 rounded-medium;
+    @apply shadow-lg;
+    @apply max-h-60 overflow-y-auto;
+
+    /* HeroUI shadow tokens */
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+/* Option Styling */
+.fontpicker__option {
+    @apply px-3 py-2 text-sm cursor-pointer;
+    @apply text-foreground border-b border-default-100;
+    @apply transition-colors duration-150;
+    @apply flex items-center gap-2;
+}
+
+.fontpicker__option:hover {
+    @apply bg-default-100 text-foreground;
+}
+
+.fontpicker__option.current {
+    @apply bg-default-200 text-foreground;
+}
+
+.fontpicker__option.selected {
+    @apply bg-primary text-primary-foreground font-semibold;
+}
+
+/* Font Preview Styling */
+.fontpicker__preview {
+    @apply text-foreground text-sm;
+    @apply flex-1 truncate;
+}
+
+/* No Matches Styling */
+.fontpicker__nomatches {
+    @apply px-3 py-2 text-sm;
+    @apply text-default-500 bg-content1;
+    @apply text-center;
+}
+
+/* Listbox Container */
+.fontpicker__listbox {
+    @apply bg-content1 rounded-medium;
+    @apply max-h-60 overflow-y-auto;
+}
+
+/* Font Variants Styling */
+.fontpicker__variants {
+    @apply text-xs text-default-500;
+    @apply ml-auto;
+}
+
+/* Loading State */
+.fontpicker__loading {
+    @apply text-default-500 text-sm;
+    @apply px-3 py-2 text-center;
+}
+
+/* Error State */
+.fontpicker__error {
+    @apply text-danger text-sm;
+    @apply px-3 py-2 text-center;
+}
+
+/* Dark Theme Overrides */
+.dark .fontpicker {
+    @apply border-default-700 bg-content1;
+}
+
+.dark .fontpicker:hover {
+    @apply border-default-600;
+}
+
+.dark .fontpicker:focus-within {
+    @apply border-primary ring-primary/20;
+}
+
+.dark .fontpicker__popout {
+    @apply border-default-700 bg-content1;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+}
+
+.dark .fontpicker__option {
+    @apply border-default-800 text-foreground;
+}
+
+.dark .fontpicker__option:hover {
+    @apply bg-default-800 text-foreground;
+}
+
+.dark .fontpicker__option.current {
+    @apply bg-default-700 text-foreground;
+}
+
+.dark .fontpicker__option.selected {
+    @apply bg-primary text-primary-foreground;
+}
+
+.dark .fontpicker__nomatches {
+    @apply text-default-400 bg-content1;
+}
+
+/* Light Theme Overrides */
+.light .fontpicker {
+    @apply border-default-200 bg-content1;
+}
+
+.light .fontpicker:hover {
+    @apply border-default-300;
+}
+
+.light .fontpicker:focus-within {
+    @apply border-primary ring-primary/20;
+}
+
+.light .fontpicker__popout {
+    @apply border-default-200 bg-content1;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.light .fontpicker__option {
+    @apply border-default-100 text-foreground;
+}
+
+.light .fontpicker__option:hover {
+    @apply bg-default-100 text-foreground;
+}
+
+.light .fontpicker__option.current {
+    @apply bg-default-200 text-foreground;
+}
+
+.light .fontpicker__option.selected {
+    @apply bg-primary text-primary-foreground;
+}
+
+.light .fontpicker__nomatches {
+    @apply text-default-500 bg-content1;
+}
+
+/* Size Variants */
+.fontpicker--sm {
+    @apply min-h-[2rem] px-2 py-1 text-sm;
+}
+
+.fontpicker--md {
+    @apply min-h-[2.5rem] px-3 py-2 text-sm;
+}
+
+.fontpicker--lg {
+    @apply min-h-[3rem] px-4 py-3 text-base;
+}
+
+/* Color Variants */
+.fontpicker--default {
+    @apply border-default-200;
+}
+
+.fontpicker--primary {
+    @apply border-primary;
+}
+
+.fontpicker--secondary {
+    @apply border-secondary;
+}
+
+.fontpicker--success {
+    @apply border-success;
+}
+
+.fontpicker--warning {
+    @apply border-warning;
+}
+
+.fontpicker--danger {
+    @apply border-danger;
+}
+
+/* Variant Styles */
+.fontpicker--flat {
+    @apply border-none bg-default-100;
+}
+
+.fontpicker--bordered {
+    @apply border-default-200 bg-transparent;
+}
+
+.fontpicker--faded {
+    @apply border-default-200 bg-default-50;
+}
+
+.fontpicker--underlined {
+    @apply border-none border-b-2 border-default-200 bg-transparent rounded-none;
+}
+
+/* Focus States for Variants */
+.fontpicker--flat:focus-within {
+    @apply bg-default-200;
+}
+
+.fontpicker--bordered:focus-within {
+    @apply border-primary;
+}
+
+.fontpicker--faded:focus-within {
+    @apply border-primary bg-default-100;
+}
+
+.fontpicker--underlined:focus-within {
+    @apply border-primary;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+    .fontpicker__popout {
+        @apply max-h-48;
+    }
+
+    .fontpicker__option {
+        @apply px-2 py-1.5 text-xs;
+    }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .fontpicker {
+        @apply border-2;
+    }
+
+    .fontpicker__option {
+        @apply border-b-2;
+    }
+
+    .fontpicker__option:hover {
+        @apply border-b-2 border-primary;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+
+    .fontpicker,
+    .fontpicker__option {
+        @apply transition-none;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .fontpicker__popout {
+        @apply hidden;
+    }
+}
+
+/* Accessibility Improvements */
+.fontpicker__option:focus {
+    @apply outline-none ring-2 ring-primary/50;
+}
+
+.fontpicker__option[aria-selected="true"] {
+    @apply bg-primary text-primary-foreground;
+}
+
+/* Custom Scrollbar for Webkit browsers */
+.fontpicker__popout::-webkit-scrollbar {
+    @apply w-2;
+}
+
+.fontpicker__popout::-webkit-scrollbar-track {
+    @apply bg-default-100 rounded-full;
+}
+
+.fontpicker__popout::-webkit-scrollbar-thumb {
+    @apply bg-default-300 rounded-full;
+}
+
+.fontpicker__popout::-webkit-scrollbar-thumb:hover {
+    @apply bg-default-400;
+}
+
+/* Firefox scrollbar styling */
+.fontpicker__popout {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--heroui-default-300)) hsl(var(--heroui-default-100));
+}

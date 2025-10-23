@@ -1,5 +1,5 @@
 {
-  "name": "@rachel-allyson/heroui-font-picker",
+  "name": "@rachelallyson/heroui-font-picker",
   "version": "1.0.0",
   "type": "module",
   "description": "A powerful font picker component for HeroUI with Google Fonts integration and sprite-based previews",
@@ -8,8 +8,7 @@
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "README.md",
-    "DUAL_PACKAGE_SUPPORT.md"
+    "README.md"
   ],
   "scripts": {
     "build": "rollup -c",
@@ -48,7 +47,6 @@
       "optional": true
     }
   },
-  "peerDependenciesOptional": true,
   "dependencies": {
     "@react-aria/i18n": "^3.0.0"
   },

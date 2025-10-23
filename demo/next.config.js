@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    transpilePackages: ['@rachel-allyson/heroui-font-picker'],
-    outputFileTracingRoot: __dirname,
+    experimental: {
+        transpilePackages: ['@rachelallyson/heroui-font-picker']
+    }
 }
 
 module.exports = nextConfig

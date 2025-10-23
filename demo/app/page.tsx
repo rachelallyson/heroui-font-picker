@@ -1,228 +1,267 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { Autocomplete, AutocompleteItem } from "@heroui/autocomplete";
-import { Button, Card, CardBody, CardHeader, Chip, Switch } from "@heroui/react";
-import { FontPicker } from '@rachel-allyson/heroui-font-picker';
-import { useTheme } from "next-themes";
-
-
+import React, { useState } from "react";
+import { FontPicker, FontPickerField } from "@rachelallyson/heroui-font-picker";
 
 export default function DemoPage() {
   const [selectedFont, setSelectedFont] = useState("Inter");
-  const [selectedFontPicker, setSelectedFontPicker] = useState("Roboto");
-  const [selectedFontField, setSelectedFontField] = useState("Open Sans");
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const [selectedFontField, setSelectedFontField] = useState("Roboto");
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
+  const styles = {
+    container: {
+      minHeight: '100vh',
+      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      padding: '2rem',
+      fontFamily: 'system-ui, sans-serif'
+    },
+    content: {
+      maxWidth: '1200px',
+      margin: '0 auto',
+      backgroundColor: 'white',
+      borderRadius: '12px',
+      padding: '2rem',
+      boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
+    },
+    header: {
+      textAlign: 'center' as const,
+      marginBottom: '2rem'
+    },
+    title: {
+      fontSize: '2.5rem',
+      fontWeight: 'bold',
+      color: '#1f2937',
+      marginBottom: '1rem'
+    },
+    subtitle: {
+      fontSize: '1.125rem',
+      color: '#6b7280'
+    },
+    grid: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
+      gap: '2rem',
+      marginBottom: '2rem'
+    },
+    card: {
+      backgroundColor: '#f9fafb',
+      borderRadius: '8px',
+      padding: '1.5rem',
+      border: '1px solid #e5e7eb'
+    },
+    cardTitle: {
+      fontSize: '1.5rem',
+      fontWeight: '600',
+      color: '#1f2937',
+      marginBottom: '1rem'
+    },
+    cardText: {
+      color: '#6b7280',
+      marginBottom: '1rem'
+    },
+    resultBox: {
+      marginTop: '1rem',
+      padding: '0.75rem',
+      backgroundColor: '#f3f4f6',
+      borderRadius: '6px',
+      fontSize: '0.875rem',
+      color: '#374151'
+    },
+    features: {
+      marginTop: '2rem',
+      padding: '1.5rem',
+      backgroundColor: '#f9fafb',
+      borderRadius: '8px',
+      border: '1px solid #e5e7eb'
+    },
+    featuresTitle: {
+      fontSize: '1.5rem',
+      fontWeight: '600',
+      color: '#1f2937',
+      marginBottom: '1rem'
+    },
+    featuresGrid: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+      gap: '1rem'
+    },
+    featureCard: {
+      padding: '1rem',
+      borderRadius: '6px',
+      backgroundColor: 'white',
+      border: '1px solid #e5e7eb'
+    },
+    featureTitle: {
+      fontWeight: '600',
+      marginBottom: '0.5rem'
+    },
+    featureText: {
+      fontSize: '0.875rem',
+      color: '#6b7280'
+    },
+    testSection: {
+      marginTop: '2rem',
+      padding: '1.5rem',
+      backgroundColor: '#f9fafb',
+      borderRadius: '8px',
+      border: '1px solid #e5e7eb'
+    },
+    testTitle: {
+      fontSize: '1.5rem',
+      fontWeight: '600',
+      color: '#1f2937',
+      marginBottom: '1rem'
+    },
+    testText: {
+      color: '#6b7280',
+      marginBottom: '1rem'
+    },
+    fontTest: {
+      marginTop: '1rem'
+    },
+    fontTestItem: {
+      padding: '1rem',
+      border: '1px solid #e5e7eb',
+      borderRadius: '6px',
+      marginBottom: '1rem',
+      backgroundColor: 'white'
+    },
+    fontTestTitle: {
+      fontWeight: '600',
+      marginBottom: '0.5rem',
+      color: '#1f2937'
+    },
+    fontTestText: {
+      fontSize: '1.5rem',
+      lineHeight: '1.5'
+    }
+  };
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 p-8`}>
-      <div className="max-w-6xl mx-auto bg-content1 rounded-xl shadow-2xl p-8">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold  mb-4">HeroUI Font Picker Demo</h1>
-          <p className="text-lg ">Testing HeroUI components with Tailwind CSS v4 and custom theming</p>
-          
-          {/* Package Support Info */}
-          <div className="mt-4">
-            <Chip 
-              color="success" 
-              variant="flat"
-              size="sm"
-            >
-              Dual Package Support
-            </Chip>
-            <p className="text-xs  mt-1">
-              Supports both @heroui/react and @heroui/autocomplete
-            </p>
-          </div>
-          
-          {/* Dark Mode Toggle */}
-          <div className="flex justify-center items-center gap-2 mt-4">
-            <span className={`text-sm `}>Light</span>
-            <Switch
-              isSelected={theme === 'dark'}
-              onValueChange={(isSelected) => setTheme(isSelected ? 'dark' : 'light')}
-              color="primary"
-            />
-            <span className={`text-sm `}>Dark</span>
-          </div>
-          <p className="text-xs  mt-2">
-            {theme === 'dark' ? 'Dark mode is active' : 'Light mode is active'}
+    <div style={styles.container}>
+      <div style={styles.content}>
+        <div style={styles.header}>
+          <h1 style={styles.title}>HeroUI Font Picker Demo</h1>
+          <p style={styles.subtitle}>
+            Testing the @rachelallyson/heroui-font-picker package
           </p>
         </div>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-          
-          {/* Basic Autocomplete */}
-          <Card className="">
-            <CardHeader>
-              <h2 className="text-2xl font-semibold ">Basic Autocomplete</h2>
-            </CardHeader>
-            <CardBody>
-              <Autocomplete
-                label="Choose Font"
-                description="Select your preferred font"
-                selectedKey={selectedFont}
-                onSelectionChange={(key) => setSelectedFont(key as string)}
-                placeholder="Choose a font..."
-                size="md"
-                variant="bordered"
-                className="mb-4"
-                color="primary"
-              >
-                <AutocompleteItem key="Inter">Inter</AutocompleteItem>
-                <AutocompleteItem key="Roboto">Roboto</AutocompleteItem>
-                <AutocompleteItem key="Open Sans">Open Sans</AutocompleteItem>
-                <AutocompleteItem key="Lato">Lato</AutocompleteItem>
-              </Autocomplete>
-              
-              <div className="mt-4 p-3  rounded-md">
-                <span className="font-semibold">Selected Font:</span> 
-                <Chip color="primary" variant="flat" className="ml-2">{selectedFont}</Chip>
-              </div>
-            </CardBody>
-          </Card>
 
-          {/* FontPicker Component */}
-          <Card className="">
-            <CardHeader>
-              <h2 className="text-2xl font-semibold ">FontPicker Component</h2>
-            </CardHeader>
-            <CardBody>
-              <p className=" mb-4">Testing the FontPicker component with Google Fonts integration:</p>
-              
-              <FontPicker
-                label="Choose Font"
-                description="Select your preferred font with preview"
-                value={selectedFontPicker}
-                onSelectionChange={(key) => setSelectedFontPicker(key as string)}
-                placeholder="Choose a font..."
-                showFontPreview={true}
-                size="md"
-                variant="bordered"
-                className="mb-4"
-                color="primary"
-              />
-              
-              <div className="mt-4 p-3  rounded-md">
-                <span className="font-semibold">Selected Font:</span> 
-                <Chip color="primary" variant="flat" className="ml-2">{selectedFontPicker}</Chip>
-              </div>
-            </CardBody>
-          </Card>
-        </div>
-
-        {/* Additional FontPicker Example */}
-        <Card className="mb-8">
-          <CardHeader>
-            <h2 className="text-2xl font-semibold ">Additional FontPicker Example</h2>
-            <p className="">Testing another FontPicker with different configuration:</p>
-          </CardHeader>
-          <CardBody>
+        <div style={styles.grid}>
+          {/* Direct FontPicker Component */}
+          <div style={styles.card}>
+            <h2 style={styles.cardTitle}>Direct FontPicker Component</h2>
+            <p style={styles.cardText}>
+              Using the FontPicker component directly with all HeroUI Autocomplete props.
+            </p>
+            
             <FontPicker
-              label="Choose Font (Alternative Config)"
-              description="Select your preferred font with different settings"
-              value={selectedFontField}
-              onSelectionChange={(key) => setSelectedFontField(key as string)}
+              label="Choose Font"
+              description="Select your preferred font"
+              value={selectedFont}
+              onSelectionChange={(key) => setSelectedFont(key as string)}
               placeholder="Choose a font..."
               showFontPreview={true}
-              size="lg"
-              variant="faded"
-              isClearable={true}
-              color="secondary"
+              size="md"
+              variant="bordered"
+              isRequired
             />
             
-            <div className="mt-4 p-3  rounded-md">
-              <span className="font-semibold">Selected Font:</span> 
-              <Chip color="secondary" variant="flat" className="ml-2">{selectedFontField}</Chip>
+            <div style={styles.resultBox}>
+              <strong>Selected Font:</strong> {selectedFont}
             </div>
-          </CardBody>
-        </Card>
+          </div>
 
-        {/* Font Test */}
-        <Card className="mb-8">
-          <CardHeader>
-            <h2 className="text-2xl font-semibold ">Live Font Test</h2>
-            <p className="">See how the selected fonts look in practice:</p>
-          </CardHeader>
-          <CardBody>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <Card className="">
-                <CardBody>
-                  <h3 className="font-semibold mb-2 ">Basic Autocomplete: {selectedFont}</h3>
-                  <p 
-                    className="text-2xl leading-relaxed"
-                    style={{ fontFamily: selectedFont }}
-                  >
-                    The quick brown fox jumps over the lazy dog
-                  </p>
-                </CardBody>
-              </Card>
-              
-              <Card className="">
-                <CardBody>
-                  <h3 className="font-semibold mb-2 ">FontPicker: {selectedFontPicker}</h3>
-                  <p 
-                    className="text-2xl leading-relaxed"
-                    style={{ fontFamily: selectedFontPicker }}
-                  >
-                    The quick brown fox jumps over the lazy dog
-                  </p>
-                </CardBody>
-              </Card>
-              
-              <Card className="">
-                <CardBody>
-                  <h3 className="font-semibold mb-2 ">FontPickerField: {selectedFontField}</h3>
-                  <p 
-                    className="text-2xl leading-relaxed"
-                    style={{ fontFamily: selectedFontField }}
-                  >
-                    The quick brown fox jumps over the lazy dog
-                  </p>
-                </CardBody>
-              </Card>
+          {/* FontPickerField Component */}
+          <div style={styles.card}>
+            <h2 style={styles.cardTitle}>FontPickerField Component</h2>
+            <p style={styles.cardText}>
+              Using the FontPickerField wrapper component for easier integration.
+            </p>
+            
+            <FontPickerField
+              label="Choose Font (Field Wrapper)"
+              description="Select your preferred font using the wrapper"
+              value={selectedFontField}
+              onChange={setSelectedFontField}
+              fontPickerProps={{
+                showFontPreview: true,
+                loadAllVariants: false,
+                size: "lg",
+                variant: "faded",
+                isClearable: true,
+              }}
+            />
+            
+            <div style={styles.resultBox}>
+              <strong>Selected Font:</strong> {selectedFontField}
             </div>
-          </CardBody>
-        </Card>
+          </div>
+        </div>
 
-        {/* Tailwind Test Section */}
-        <Card className="bg-primary-50 dark:bg-primary-900/20">
-          <CardHeader>
-            <h2 className="text-2xl font-semibold text-primary-800 dark:text-primary-200">Tailwind CSS v4 + HeroUI Test</h2>
-            <p className="text-primary-600 dark:text-primary-300">Testing various Tailwind utility classes with HeroUI components:</p>
-          </CardHeader>
-          <CardBody>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <Card className="bg-gradient-to-r from-pink-500 to-rose-500 ">
-                <CardBody className="text-center">
-                  <h3 className="font-bold text-lg">Gradient</h3>
-                  <p className="text-sm">Pink to Rose</p>
-                </CardBody>
-              </Card>
-              
-              <Card className="bg-success-100 dark:bg-success-900/20 border-2 border-success-500">
-                <CardBody className="text-center">
-                  <h3 className="font-bold text-lg text-success-800 dark:text-success-200">Success</h3>
-                  <p className="text-sm text-success-600 dark:text-success-300">Green theme</p>
-                </CardBody>
-              </Card>
-              
-              <Card className="bg-secondary-200 hover:bg-secondary-300 transition-colors duration-300 cursor-pointer">
-                <CardBody className="text-center">
-                  <h3 className="font-bold text-lg text-secondary-800">Hover</h3>
-                  <p className="text-sm text-secondary-600">Purple hover</p>
-                </CardBody>
-              </Card>
+        {/* Features Section */}
+        <div style={styles.features}>
+          <h2 style={styles.featuresTitle}>Package Features</h2>
+          <div style={styles.featuresGrid}>
+            <div style={{...styles.featureCard, backgroundColor: '#dbeafe'}}>
+              <h3 style={{...styles.featureTitle, color: '#1e40af'}}>Google Fonts Integration</h3>
+              <p style={{...styles.featureText, color: '#1d4ed8'}}>Access to 1,785+ Google Fonts with intelligent loading</p>
             </div>
-          </CardBody>
-        </Card>
+            <div style={{...styles.featureCard, backgroundColor: '#dcfce7'}}>
+              <h3 style={{...styles.featureTitle, color: '#166534'}}>Sprite Previews</h3>
+              <p style={{...styles.featureText, color: '#16a34a'}}>Instant font previews using optimized sprite images</p>
+            </div>
+            <div style={{...styles.featureCard, backgroundColor: '#f3e8ff'}}>
+              <h3 style={{...styles.featureTitle, color: '#7c3aed'}}>HeroUI Compatible</h3>
+              <p style={{...styles.featureText, color: '#9333ea'}}>Works with both @heroui/react and @heroui/autocomplete</p>
+            </div>
+            <div style={{...styles.featureCard, backgroundColor: '#fed7aa'}}>
+              <h3 style={{...styles.featureTitle, color: '#ea580c'}}>TypeScript Support</h3>
+              <p style={{...styles.featureText, color: '#f97316'}}>Full TypeScript support with proper type definitions</p>
+            </div>
+            <div style={{...styles.featureCard, backgroundColor: '#fecaca'}}>
+              <h3 style={{...styles.featureTitle, color: '#dc2626'}}>Intelligent Loading</h3>
+              <p style={{...styles.featureText, color: '#ef4444'}}>Loads only essential font variants for optimal performance</p>
+            </div>
+            <div style={{...styles.featureCard, backgroundColor: '#e0e7ff'}}>
+              <h3 style={{...styles.featureTitle, color: '#4338ca'}}>Flexible Integration</h3>
+              <p style={{...styles.featureText, color: '#6366f1'}}>Easy integration with react-hook-form and other form libraries</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Test Section */}
+        <div style={styles.testSection}>
+          <h2 style={styles.testTitle}>Live Font Test</h2>
+          <p style={styles.testText}>
+            See how the selected fonts look in practice:
+          </p>
+          
+          <div style={styles.fontTest}>
+            <div style={styles.fontTestItem}>
+              <h3 style={styles.fontTestTitle}>Font 1: {selectedFont}</h3>
+              <p 
+                style={{
+                  ...styles.fontTestText,
+                  fontFamily: selectedFont
+                }}
+              >
+                The quick brown fox jumps over the lazy dog
+              </p>
+            </div>
+            
+            <div style={styles.fontTestItem}>
+              <h3 style={styles.fontTestTitle}>Font 2: {selectedFontField}</h3>
+              <p 
+                style={{
+                  ...styles.fontTestText,
+                  fontFamily: selectedFontField
+                }}
+              >
+                The quick brown fox jumps over the lazy dog
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

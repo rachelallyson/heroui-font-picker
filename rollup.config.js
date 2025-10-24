@@ -8,13 +8,14 @@ import json from '@rollup/plugin-json';
 import { copyFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
 
-// Copy CSS only (sprites are embedded)
+// Copy required assets (sprites are embedded in CSS as base64)
 function copyAssets() {
     return {
         name: 'copy-assets',
         writeBundle() {
             const assets = [
-                'src/font-preview/font-previews.css'
+                'src/font-preview/font-previews.css',
+                'src/font-preview/fontInfo.json'
             ];
 
             assets.forEach(asset => {

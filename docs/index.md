@@ -1,0 +1,111 @@
+# HeroUI Font Picker Documentation
+
+A powerful font picker component for HeroUI with Google Fonts integration and sprite-based previews.
+
+## Quick Navigation
+
+- [**Quick Start**](./guides/quickstart.md) - Get up and running in 5 minutes
+- [**Concepts**](./concepts.md) - Core mental models and architecture
+- [**API Reference**](./reference/api.md) - Component props and utilities
+- [**Examples**](./recipes/examples.md) - Copy-paste code snippets
+- [**Troubleshooting**](./troubleshooting.md) - Common issues and fixes
+
+## What This Package Provides
+
+### Core Components
+
+- **`FontPicker`** - Main autocomplete component with font previews
+- **Utility Functions** - Font loading, preview creation, variant selection
+- **TypeScript Types** - Full type safety for all components and functions
+
+### Key Features
+
+- 🎨 **1,785+ Google Fonts** with instant previews
+- 🖼️ **Sprite-based Previews** - Zero loading time for font previews  
+- 🚀 **Intelligent Loading** - Only loads 4 essential variants by default
+- 🎯 **HeroUI Integration** - Seamless integration with HeroUI components
+- 📱 **Dual Package Support** - Works with `@heroui/react` or `@heroui/autocomplete`
+- ⚡ **TypeScript** - Full TypeScript support
+- 🎨 **Self-contained** - All assets bundled, no external configuration
+
+## Installation
+
+```bash
+# Option 1: With full HeroUI package
+npm install @rachelallyson/heroui-font-picker @heroui/react react react-dom
+
+# Option 2: With autocomplete-only package (smaller bundle)
+npm install @rachelallyson/heroui-font-picker @heroui/autocomplete react react-dom
+```
+
+## Basic Usage
+
+```tsx
+import { FontPicker } from '@rachelallyson/heroui-font-picker';
+
+function MyComponent() {
+  const [selectedFont, setSelectedFont] = useState('Inter');
+
+  return (
+    <FontPicker
+      label="Choose Font"
+      value={selectedFont}
+      onSelectionChange={(key) => setSelectedFont(key as string)}
+      showFontPreview={true}
+      placeholder="Choose a font..."
+    />
+  );
+}
+```
+
+## Architecture Overview
+
+### Sprite System
+
+The font picker uses pre-rendered sprite images for instant font previews:
+
+- **1,785+ fonts** pre-rendered as CSS sprites
+- **Zero loading time** for previews
+- **30MB sprite files** for complete coverage
+- **CSS positioning** for efficient rendering
+
+### Font Loading Strategy
+
+- **Preview**: Uses sprites (instant)
+- **Selected Font**: Loads from Google Fonts API (intelligent 4-variant selection)
+- **Fallback**: Graceful degradation if fonts fail to load
+
+### Dual Package Support
+
+Automatically detects and uses available HeroUI packages:
+
+1. **First Priority**: `@heroui/autocomplete` (smaller bundle)
+2. **Fallback**: `@heroui/react` (full package)
+3. **Error**: Clear error message if neither available
+
+## Framework Support
+
+Works seamlessly across all React frameworks:
+
+- **Next.js**: Works out of the box (demo includes minimal config)
+- **Vite**: Works out of the box
+- **Create React App**: Works out of the box
+- **Any React framework**: Works out of the box
+
+## Browser Support
+
+- Chrome 60+
+- Firefox 55+
+- Safari 12+
+- Edge 79+
+
+## Getting Help
+
+- [**Troubleshooting Guide**](./troubleshooting.md) - Common issues and solutions
+- [**Examples**](./recipes/examples.md) - Real-world usage patterns
+- [**API Reference**](./reference/api.md) - Complete API documentation
+- [**GitHub Issues**](https://github.com/rachelallyson/heroui-font-picker/issues) - Report bugs or request features
+
+## Contributing
+
+See [CONTRIBUTING.md](../CONTRIBUTING.md) for development setup and guidelines.

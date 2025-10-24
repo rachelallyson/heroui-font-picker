@@ -1,2 +1,29 @@
-# Auto detect text files and perform LF normalization
+# Git attributes for HeroUI Font Picker
+
+# Ensure consistent line endings
 * text=auto
+
+# Binary files
+*.svg binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+
+# Large files that don't need diffing
+src/font-preview/font-previews.css linguist-generated
+src/font-preview/fontInfo.json linguist-generated
+
+# Documentation files
+*.md text
+docs/**/*.md text
+
+# TypeScript files
+*.ts text
+*.tsx text
+
+# Configuration files
+*.json text
+*.js text
+*.config.js text

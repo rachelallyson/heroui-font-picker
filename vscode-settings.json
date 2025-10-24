@@ -1,0 +1,27 @@
+{
+    "typescript.preferences.includePackageJsonAutoImports": "auto",
+    "typescript.suggest.autoImports": true,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true,
+        "source.organizeImports": true
+    },
+    "files.associations": {
+        "*.css": "css",
+        "*.json": "jsonc"
+    },
+    "files.exclude": {
+        "**/node_modules": true,
+        "**/dist": true,
+        "**/.git": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true
+    },
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/dist": true,
+        "**/demo/node_modules": true,
+        "**/demo/.next": true
+    }
+}

@@ -101,10 +101,16 @@ export function FontPicker({
   // Extract value and map it to selectedKey for HeroUI Autocomplete
   const { value, ...restProps } = autocompleteProps;
   
+  // Convert value to Key type (string | number | null | undefined)
+  // React Aria Key is string | number, so we filter out arrays and bigint
+  const selectedKey = (typeof value === 'string' || typeof value === 'number') 
+    ? (value as string | number)
+    : undefined;
+  
   return (
     <Autocomplete
       {...restProps}
-      selectedKey={value || null}
+      selectedKey={selectedKey}
       onSelectionChange={handleSelectionChange}
       onOpenChange={handleOpenChange}
       isLoading={loading}

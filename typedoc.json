@@ -14,7 +14,6 @@
     "excludeTags": [
         "@internal"
     ],
-    "readme": "docs/content/api/README.md",
     "theme": "default",
     "navigation": {
         "includeCategories": true,

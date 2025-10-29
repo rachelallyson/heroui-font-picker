@@ -18,7 +18,10 @@
     "dev": "rollup -c --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
     "docs": "typedoc",
-    "docs:serve": "typedoc --watch"
+    "docs:api": "typedoc",
+    "docs:dev": "cd docs && next dev",
+    "docs:build": "cd docs && next build",
+    "docs:api:watch": "typedoc --watch"
   },
   "keywords": [
     "heroui",
@@ -56,13 +59,18 @@
     "@react-aria/i18n": "^3.0.0"
   },
   "devDependencies": {
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
     "@heroui/autocomplete": "^2.0.0",
     "@heroui/react": "^2.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "next": "^16.0.1",
+    "nextra": "^4.6.0",
+    "nextra-theme-docs": "^4.6.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "tsup": "^8.0.0",
-    "typescript": "^5.0.0",
     "typedoc": "^0.25.0",
-    "typedoc-plugin-markdown": "^3.15.0"
+    "typedoc-plugin-markdown": "^3.17.1",
+    "typescript": "^5.0.0"
   }
 }

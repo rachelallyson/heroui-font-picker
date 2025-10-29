@@ -52,6 +52,11 @@ npm run lint
 
 # Format code
 npm run format
+
+# Documentation
+npm run docs:api       # Generate API docs via TypeDoc
+npm run docs:dev       # Start docs dev server
+npm run docs:build     # Build docs for production
 ```
 
 ## Project Structure
@@ -104,6 +109,45 @@ src/
 3. **Sprite System**: Test preview rendering across different browsers
 4. **Framework Integration**: Test with Next.js, Vite, and CRA
 
+## Documentation Workflow
+
+### Editing Documentation
+
+All documentation content lives in `docs/content/` directory using `.mdx` files:
+
+- **Source of truth**: `docs/content/**/*.mdx` (committed to git)
+- **No conversion needed**: Nextra reads `.mdx` files directly
+- **Edit directly**: Just edit `.mdx` files in `docs/content/`
+
+### Previewing Documentation
+
+```bash
+# Install docs dependencies (first time only)
+cd docs && npm install
+
+# Start dev server
+npm run docs:dev
+
+# Visit http://localhost:3000
+```
+
+### Documentation Structure
+
+- `docs/content/index.mdx` - Main entry point
+- `docs/content/concepts.mdx` - Architecture and concepts
+- `docs/content/guides/` - How-to guides
+- `docs/content/reference/` - API and config reference
+- `docs/content/recipes/` - Code examples
+- `docs/content/api/` - Auto-generated from TypeDoc
+
+### API Documentation
+
+API docs are auto-generated from TypeScript source:
+
+```bash
+npm run docs:api  # Generates docs/content/api/**/*.md
+```
+
 ## Making Changes
 
 ### 1. Create a Feature Branch
@@ -116,7 +160,7 @@ git checkout -b feature/your-feature-name
 
 - Follow the code style guidelines
 - Add tests for new functionality
-- Update documentation if needed
+- Update documentation in `docs/content/**/*.mdx`
 - Ensure all existing tests pass
 
 ### 3. Test Your Changes
@@ -125,10 +169,9 @@ git checkout -b feature/your-feature-name
 # Build the package
 npm run build
 
-# Test in demo
-cd demo
-npm install
-npm run dev
+# Test in documentation demo
+npm run docs:dev
+# Visit http://localhost:3000/demo to see the interactive demo
 ```
 
 ### 4. Commit Your Changes
@@ -164,7 +207,7 @@ Then create a pull request on GitHub.
 - [ ] All tests pass
 - [ ] Documentation is updated
 - [ ] No breaking changes (or clearly documented)
-- [ ] Changes are tested in demo
+- [ ] Changes are tested in docs demo (npm run docs:dev)
 
 ### PR Description
 

@@ -65,13 +65,13 @@ export function FontPicker({
   }, [fonts]);
 
   const handleSelectionChange = (key: React.Key | null) => {
+    // Call the original onSelectionChange if provided (always call, even if null)
+    if (autocompleteProps.onSelectionChange) {
+      autocompleteProps.onSelectionChange(key as any);
+    }
+    
     if (key) {
       const fontName = key as string;
-      
-      // Call the original onSelectionChange if provided
-      if (autocompleteProps.onSelectionChange) {
-        autocompleteProps.onSelectionChange(key as any);
-      }
       
       // Load the selected font with intelligent variant selection
       if (showFontPreview && fontName) {
@@ -98,9 +98,13 @@ export function FontPicker({
     }
   };
 
+  // Extract value and map it to selectedKey for HeroUI Autocomplete
+  const { value, ...restProps } = autocompleteProps;
+  
   return (
     <Autocomplete
-      {...autocompleteProps}
+      {...restProps}
+      selectedKey={value || null}
       onSelectionChange={handleSelectionChange}
       onOpenChange={handleOpenChange}
       isLoading={loading}

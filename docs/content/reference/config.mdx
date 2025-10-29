@@ -1,0 +1,140 @@
+# Configuration Reference
+
+This package is **self-contained** and requires **no configuration**. All assets (sprites, CSS, font data) are bundled with the package.
+
+## No Configuration Required
+
+The HeroUI Font Picker works out of the box with zero configuration:
+
+- ✅ No environment variables
+- ✅ No configuration files
+- ✅ No setup steps
+- ✅ No external services
+
+## Installation
+
+Simply install the package and its peer dependencies:
+
+```bash
+# Option 1: Full HeroUI package
+npm install @rachelallyson/heroui-font-picker @heroui/react react react-dom
+
+# Option 2: Autocomplete-only package
+npm install @rachelallyson/heroui-font-picker @heroui/autocomplete react react-dom
+```
+
+## Component Props
+
+All configuration is done through component props. See [API Reference](./api.mdx) for complete prop documentation.
+
+### FontPicker Props
+
+```tsx
+interface FontPickerProps {
+  // Required
+  value?: string;
+  onSelectionChange?: (key: React.Key | null) => void;
+  
+  // Font-specific options
+  showFontPreview?: boolean;        // Default: true
+  loadAllVariants?: boolean;       // Default: false (uses 4-variant optimization)
+  onFontsLoaded?: (loaded: boolean) => void;
+  fontsLoadedTimeout?: number;     // Default: 3000ms
+  
+  // All HeroUI Autocomplete props are supported
+  // See HeroUI Autocomplete documentation
+}
+```
+
+## Framework-Specific Setup
+
+### Next.js
+
+Optional: Add to `next.config.js` for optimal sprite serving:
+
+```javascript
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  transpilePackages: ['@rachelallyson/heroui-font-picker'],
+  async rewrites() {
+    return [
+      {
+        source: '/sprite.:path*',
+        destination: '/node_modules/@rachelallyson/heroui-font-picker/dist/sprite.:path*'
+      }
+    ];
+  }
+}
+
+module.exports = nextConfig
+```
+
+### Vite
+
+No configuration needed - works out of the box.
+
+### Create React App
+
+No configuration needed - works out of the box.
+
+## Asset Management
+
+### Bundled Assets
+
+All assets are bundled with the package in `dist/`:
+
+- **Font Data**: `fontInfo.json` (1,785+ fonts)
+- **Sprite Images**: `sprite.*.svg` (9 sprite files)
+- **CSS**: `font-previews.css`, `font-picker.css`
+- **JavaScript**: ESM and CJS bundles
+
+### Asset Paths
+
+Assets are automatically resolved from the package installation:
+
+```
+node_modules/@rachelallyson/heroui-font-picker/dist/
+├── index.js          # CJS bundle
+├── index.mjs         # ESM bundle
+├── index.d.ts        # TypeScript definitions
+├── font-previews.css # Sprite CSS
+├── font-picker.css   # Component CSS
+└── sprite.*.svg      # Sprite images
+```
+
+## Environment Variables
+
+**None required.** This package is fully client-side and requires no environment variables.
+
+## Runtime Configuration
+
+All runtime behavior is controlled via component props:
+
+```tsx
+<FontPicker
+  showFontPreview={true}      // Enable/disable sprite previews
+  loadAllVariants={false}     // Use 4-variant optimization
+  fontsLoadedTimeout={3000}   // Font loading timeout
+/>
+```
+
+## Content Security Policy
+
+If using CSP, ensure these policies:
+
+```javascript
+// Required for Google Fonts API
+font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com;
+
+// Required for sprite images
+img-src 'self' data:;
+```
+
+## Browser Requirements
+
+- **Modern ES6+ support**: Required for module imports
+- **CSS Sprites**: Required for font previews
+- **Font Loading API**: Optional (fallback available)
+
+See [Browser Support](../index.mdx#browser-support) for details.
+

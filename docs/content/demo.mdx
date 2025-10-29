@@ -1,0 +1,89 @@
+# Live Demo
+
+Try the HeroUI Font Picker in action! This interactive demo shows all the features and capabilities.
+
+## Interactive Demo
+
+<Demo />
+
+## Features Demonstrated
+
+### FontPicker Component
+- **Direct integration** with HeroUI Autocomplete
+- **Sprite-based previews** for instant font visualization
+- **Intelligent font loading** with 4-variant optimization
+- **Full HeroUI theming** support
+
+### FontPickerField Component
+- **Wrapper component** for easier form integration
+- **Built-in state management** for simpler usage
+- **Customizable font picker props** for advanced configuration
+
+### Live Font Testing
+- **Real-time preview** of selected fonts
+- **Multiple font selection** for comparison
+- **Typography testing** with sample text
+
+## Try It Yourself
+
+1. **Select fonts** using the pickers above
+2. **Watch the live preview** update in real-time
+3. **Test different variants** and sizes
+4. **See the font loading** in action
+
+## Code Examples
+
+### Basic Usage
+
+```tsx
+import { FontPicker } from '@rachelallyson/heroui-font-picker';
+
+function MyComponent() {
+  const [selectedFont, setSelectedFont] = useState('Inter');
+
+  return (
+    <FontPicker
+      label="Choose Font"
+      value={selectedFont}
+      onSelectionChange={(key) => setSelectedFont(key as string)}
+      showFontPreview={true}
+    />
+  );
+}
+```
+
+### With Form Integration
+
+```tsx
+import { FontPickerField } from '@rachelallyson/heroui-font-picker';
+
+function MyForm() {
+  const [font, setFont] = useState('Roboto');
+
+  return (
+    <FontPickerField
+      label="Choose Font"
+      value={font}
+      onChange={setFont}
+      fontPickerProps={{
+        showFontPreview: true,
+        loadAllVariants: false
+      }}
+    />
+  );
+}
+```
+
+## What You'll See
+
+- **1,785+ Google Fonts** available for selection
+- **Instant sprite previews** with zero loading time
+- **Smart font loading** that only loads essential variants
+- **Seamless HeroUI integration** with your existing design system
+- **TypeScript support** with full type safety
+
+## Next Steps
+
+- [**Quick Start Guide**](./guides/quickstart.mdx) - Get up and running in 5 minutes
+- [**API Reference**](./reference/api.mdx) - Complete component documentation
+- [**Examples**](./recipes/examples.mdx) - More code snippets and patterns

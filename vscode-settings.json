@@ -21,7 +21,7 @@
     "search.exclude": {
         "**/node_modules": true,
         "**/dist": true,
-        "**/demo/node_modules": true,
-        "**/demo/.next": true
+        "**/docs/node_modules": true,
+        "**/docs/.next": true
     }
 }

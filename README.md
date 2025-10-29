@@ -1,4 +1,4 @@
-# @rachel-allyson/heroui-font-picker
+# @rachelallyson/heroui-font-picker
 
 A powerful font picker component for HeroUI with Google Fonts integration and sprite-based previews.
 
@@ -15,48 +15,39 @@ A powerful font picker component for HeroUI with Google Fonts integration and sp
 ## Installation
 
 ```bash
-npm install @rachel-allyson/heroui-font-picker
+npm install @rachelallyson/heroui-font-picker
 ```
 
-### Dual Package Strategy
+### Peer Dependencies
 
-The font picker uses a **dual import strategy** that provides flexibility for users to choose between individual HeroUI packages or the all-in-one `@heroui/react` package:
+The font picker supports both HeroUI packages. Install **one** of the following:
 
-#### **Default Path: Individual Packages**
+**Option 1: Full HeroUI package**
 
 ```bash
-npm install @rachel-allyson/heroui-font-picker @heroui/autocomplete react react-dom
+npm install @heroui/react react react-dom
 ```
 
-```typescript
-import { FontPicker } from '@rachel-allyson/heroui-font-picker';
-// Uses individual @heroui/autocomplete package
-```
-
-#### **Alternative Path: All-in-One Package**
+**Option 2: Autocomplete-only package**
 
 ```bash
-npm install @rachel-allyson/heroui-font-picker @heroui/react react react-dom
+npm install @heroui/autocomplete react react-dom
 ```
 
-```typescript
-import { FontPicker } from '@rachel-allyson/heroui-font-picker/react';
-// Uses @heroui/react package
+**Option 3: Individual HeroUI packages (like @rachelallyson/hero-hook-form)**
+
+```bash
+npm install @heroui/autocomplete @heroui/system react react-dom
 ```
 
-### Benefits
-
-- **Bundle Size**: Individual packages allow tree-shaking for smaller bundles
-- **Flexibility**: Choose the approach that fits your project
-- **Compatibility**: Works with both installation strategies
-- **Future-Proof**: Can adapt if HeroUI's packaging strategy changes
+The font picker will automatically detect which package is available and use the appropriate components. This follows the same pattern as `@rachelallyson/hero-hook-form` for maximum flexibility.
 
 ## Quick Start
 
 ### Basic Usage
 
 ```tsx
-import { FontPicker } from '@rachel-allyson/heroui-font-picker';
+import { FontPicker } from '@rachelallyson/heroui-font-picker';
 
 function MyComponent() {
   const [selectedFont, setSelectedFont] = useState('Inter');
@@ -80,7 +71,7 @@ function MyComponent() {
 ### With Form Integration
 
 ```tsx
-import { FontPickerField } from '@rachel-allyson/heroui-font-picker';
+import { FontPickerField } from '@rachelallyson/heroui-font-picker';
 
 function MyForm() {
   const [font, setFont] = useState('Inter');
@@ -135,7 +126,7 @@ All FontPicker props plus:
 ### Custom Font Loading
 
 ```tsx
-import { loadGoogleFont, getFourVariants } from '@rachel-allyson/heroui-font-picker';
+import { loadGoogleFont, getFourVariants } from '@rachelallyson/heroui-font-picker';
 
 // Load specific font with all variants
 loadGoogleFont('Inter', ['0,300', '0,400', '0,500', '0,600', '0,700']);
@@ -149,7 +140,7 @@ loadGoogleFont('Inter', essentialVariants);
 ### Font Loading Detection
 
 ```tsx
-import { checkFontLoaded } from '@rachel-allyson/heroui-font-picker';
+import { checkFontLoaded } from '@rachelallyson/heroui-font-picker';
 
 const isLoaded = await checkFontLoaded('Inter', 5000);
 console.log('Font loaded:', isLoaded);
@@ -163,51 +154,6 @@ The font picker uses a sophisticated sprite system for instant font previews:
 - **Zero loading time** for previews
 - **30MB sprite files** for complete coverage
 - **CSS positioning** for efficient rendering
-
-### Asset Management
-
-The package is completely self-contained and includes all necessary assets (sprite files and CSS). The font picker automatically loads its required assets.
-
-#### Framework Support
-
-The package works seamlessly across all React frameworks:
-
-- **Next.js**: Works out of the box (demo includes minimal Next.js config for asset serving)
-- **Vite**: Works out of the box
-- **Create React App**: Works out of the box
-- **Any other React framework**: Works out of the box
-
-#### For Next.js Users
-
-The demo includes a simple Next.js configuration that serves assets from the package. You can copy this configuration to your `next.config.js`:
-
-```javascript
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-    transpilePackages: ['@rachel-allyson/heroui-font-picker'],
-    async rewrites() {
-        return [
-            {
-                source: '/sprite.:path*',
-                destination: '/node_modules/@rachel-allyson/heroui-font-picker/dist/sprite.:path*'
-            }
-        ];
-    }
-}
-
-module.exports = nextConfig
-```
-
-**Note**: This is only needed for Next.js. Other frameworks work without any configuration!
-
-#### Inspired by react-fontpicker
-
-This package takes inspiration from [react-fontpicker](https://github.com/ae9is/react-fontpicker) but with key improvements:
-
-- **Zero configuration**: No manual CSS imports required
-- **HeroUI integration**: Built specifically for HeroUI components
-- **Self-contained**: All assets bundled with the package
-- **Modern approach**: Uses absolute paths for better asset resolution
 
 ## Browser Support
 

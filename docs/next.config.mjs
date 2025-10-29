@@ -1,4 +1,9 @@
 import nextra from 'nextra'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const withNextra = nextra({
   search: { codeblocks: false },
@@ -19,6 +24,11 @@ const nextConfig = {
         ...config.resolve.fallback,
         fs: false,
       }
+    }
+    // Resolve local package from source
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@rachelallyson/heroui-font-picker': path.resolve(__dirname, '../src'),
     }
     return config
   },

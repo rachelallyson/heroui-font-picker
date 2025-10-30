@@ -14,31 +14,11 @@ const withNextra = nextra({
 const nextConfig = {
   output: 'export',
   images: { unoptimized: true },
-  basePath: process.env.NODE_ENV === 'production' ? '/heroui-font-picker' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/heroui-font-picker' : '',
   trailingSlash: true,
-  transpilePackages: ['@rachelallyson/heroui-font-picker'],
-  // Turbopack aliases for module resolution (uses relative paths)
+  // Explicitly set workspace root to docs directory to avoid lockfile detection issues
+  // when running from project root. This ensures Next.js resolves modules correctly.
   turbopack: {
-    resolveAlias: {
-      '@rachelallyson/heroui-font-picker': '../src',
-      '#ui': '@heroui/react',
-    },
-  },
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        fs: false,
-      }
-    }
-    // Resolve local package from source and #ui path mapping (for webpack fallback)
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      '@rachelallyson/heroui-font-picker': path.resolve(__dirname, '../src'),
-      '#ui': '@heroui/react',
-    }
-    return config
+    root: __dirname,
   },
 }
 

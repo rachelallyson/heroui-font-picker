@@ -1,54 +1,34 @@
 import { generateStaticParamsFor, importPage } from 'nextra/pages'
 import { useMDXComponents as getMDXComponents } from '../../mdx-components'
 
-export const generateStaticParams = generateStaticParamsFor('mdxPath')
+const baseGenerateStaticParams = generateStaticParamsFor('mdxPath')
 
-export async function generateMetadata(props) {
-  const params = await props.params
-  try {
-    const { metadata } = await importPage(params?.mdxPath)
-    return metadata
-  } catch (error) {
-    // Return default metadata if page fails to load (handles Next.js prerender bugs)
-    if (error.message?.includes('workUnitAsyncStorage') || error.message?.includes('Invariant')) {
-      return { title: 'API Documentation', description: 'API documentation page' }
-    }
-    return { title: 'API Documentation' }
-  }
+export const dynamicParams = false
+
+export async function generateStaticParams() {
+  return await baseGenerateStaticParams()
 }
 
-const Wrapper = getMDXComponents().wrapper
+export async function generateMetadata({ params }) {
+  const { mdxPath } = await params
+  const { metadata } = await importPage(mdxPath)
+  return metadata
+}
 
-export default async function Page(props) {
-  const params = await props.params
-  const path = params?.mdxPath?.length ? params.mdxPath : undefined
+export default async function Page({ params }) {
+  const { mdxPath } = await params
+  const {
+    default: MDXContent,
+    toc,
+    metadata,
+    sourceCode
+  } = await importPage(mdxPath)
 
-  try {
-    const {
-      default: MDXContent,
-      toc,
-      metadata,
-      sourceCode
-    } = await importPage(path)
-    return (
-      <Wrapper toc={toc} metadata={metadata} sourceCode={sourceCode}>
-        <MDXContent {...props} params={params} />
-      </Wrapper>
-    )
-  } catch (error) {
-    // Handle Next.js prerender errors gracefully during static export
-    if (error.message?.includes('workUnitAsyncStorage') || error.message?.includes('Invariant')) {
-      // Return a fallback page for problematic routes
-      return (
-        <Wrapper toc={[]} metadata={{ title: 'API Documentation' }} sourceCode={null}>
-          <div style={{ padding: '2rem' }}>
-            <h1>API Documentation</h1>
-            <p>This page encountered an error during build. Please visit the <a href="/api">API index</a> for documentation.</p>
-          </div>
-        </Wrapper>
-      )
-    }
-    // Re-throw other errors
-    throw error
-  }
+  const Wrapper = getMDXComponents().wrapper
+
+  return (
+    <Wrapper toc={toc} metadata={metadata} sourceCode={sourceCode}>
+      <MDXContent />
+    </Wrapper>
+  )
 }

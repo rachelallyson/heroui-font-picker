@@ -14,6 +14,7 @@ const navbar = <Navbar logo={<b>HeroUI Font Picker</b>} />
 const footer = <Footer>MIT License © {new Date().getFullYear()} Rachel Higley.</Footer>
 
 function normalizePageMap(pages) {
+  if (!pages || !Array.isArray(pages)) return []
   return pages.map(page => {
     const normalized = {
       ...page,
@@ -29,6 +30,8 @@ function normalizePageMap(pages) {
 }
 
 export default async function RootLayout({ children }) {
+  // getPageMap() should work fine in Next.js 16 if called directly in async function
+  // The issue was likely in how it was being called or wrapped
   const pageMap = await getPageMap()
   // Strip /content prefix from pageMap URLs since contentDirBasePath handles routing
   const normalizedPageMap = normalizePageMap(pageMap)

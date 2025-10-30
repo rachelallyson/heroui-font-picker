@@ -7,7 +7,7 @@ import { getHeroUIComponents } from "../utils/heroUI";
 import type { FontPickerProps, GoogleFont } from "../types";
 import fontData from '../font-preview/fontInfo.json';
 import { getFourVariants, checkFontLoaded, loadGoogleFont, sanitizeFontName, createFontPreview } from '../utils/fontUtils';
-import '../styles/font-picker.css';
+// font-picker.css is imported in docs/app/globals.css to ensure Tailwind v4 processes @apply directives
 import '../font-preview/font-previews.css';
 
 // HeroUI Autocomplete-based font picker component with Google Fonts integration

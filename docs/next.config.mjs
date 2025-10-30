@@ -18,6 +18,13 @@ const nextConfig = {
   assetPrefix: process.env.NODE_ENV === 'production' ? '/heroui-font-picker' : '',
   trailingSlash: true,
   transpilePackages: ['@rachelallyson/heroui-font-picker'],
+  // Turbopack aliases for module resolution (uses relative paths)
+  turbopack: {
+    resolveAlias: {
+      '@rachelallyson/heroui-font-picker': '../src',
+      '#ui': '@heroui/react',
+    },
+  },
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback = {
@@ -25,7 +32,7 @@ const nextConfig = {
         fs: false,
       }
     }
-    // Resolve local package from source and #ui path mapping
+    // Resolve local package from source and #ui path mapping (for webpack fallback)
     config.resolve.alias = {
       ...config.resolve.alias,
       '@rachelallyson/heroui-font-picker': path.resolve(__dirname, '../src'),

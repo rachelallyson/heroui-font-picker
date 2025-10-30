@@ -1,4 +1,5 @@
 /* HeroUI Font Picker Integration Styles */
+@reference "../../docs/tailwind.config.js";
 
 /* Font Picker Base Styles - Using HeroUI Design Tokens */
 .fontpicker {

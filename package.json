@@ -56,21 +56,21 @@
     }
   },
   "dependencies": {
-    "@react-aria/i18n": "^3.0.0"
+    "@react-aria/i18n": "^3.12.13"
   },
   "devDependencies": {
-    "@heroui/autocomplete": "^2.0.0",
-    "@heroui/react": "^2.0.0",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
+    "@heroui/autocomplete": "^2.3.29",
+    "@heroui/react": "^2.8.5",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
     "next": "^16.0.1",
     "nextra": "^4.6.0",
     "nextra-theme-docs": "^4.6.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "tsup": "^8.0.0",
-    "typedoc": "^0.25.0",
-    "typedoc-plugin-markdown": "^3.17.1",
-    "typescript": "^5.0.0"
+    "tsup": "^8.5.0",
+    "typedoc": "^0.28.14",
+    "typedoc-plugin-markdown": "^4.9.0",
+    "typescript": "^5.9.3"
   }
 }

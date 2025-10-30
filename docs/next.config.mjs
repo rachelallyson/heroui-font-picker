@@ -25,10 +25,11 @@ const nextConfig = {
         fs: false,
       }
     }
-    // Resolve local package from source
+    // Resolve local package from source and #ui path mapping
     config.resolve.alias = {
       ...config.resolve.alias,
       '@rachelallyson/heroui-font-picker': path.resolve(__dirname, '../src'),
+      '#ui': '@heroui/react',
     }
     return config
   },

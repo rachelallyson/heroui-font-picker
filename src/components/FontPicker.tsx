@@ -106,7 +106,7 @@ export function FontPicker({
   const selectedKey = (typeof value === 'string' || typeof value === 'number') 
     ? (value as string | number)
     : undefined;
-  
+
   return (
     <Autocomplete
       {...restProps}

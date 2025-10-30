@@ -15,6 +15,8 @@ const nextConfig = {
   output: 'export',
   images: { unoptimized: true },
   trailingSlash: true,
+  // Set basePath for GitHub Pages deployment
+  basePath: '/heroui-font-picker',
   // Explicitly set workspace root to docs directory to avoid lockfile detection issues
   // when running from project root. This ensures Next.js resolves modules correctly.
   turbopack: {
